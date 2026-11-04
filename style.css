@@ -1,0 +1,149 @@
+/* ===== Travesuras de Simón · sistema visual =====
+   Los colores salen de los bloques del logo: cada nivel tiene el suyo.
+   Títulos en Baloo 2 (redondeada, escolar); datos y cifras en Atkinson Hyperlegible. */
+:root{
+  --bg:#f4f2f9; --c:#ffffff; --c2:#faf9fd; --t:#231d3b; --m:#6b6585; --b:#e3def0;
+  --p:#5b34a8; --p2:#efe9fb;
+  --pre:#f08a3c; --pre2:#fff1e5;     /* Preescolar: naranja */
+  --pri:#3f7fd6; --pri2:#e8f0fc;     /* Primaria: azul */
+  --y:#f5c542; --gn:#3f9d8c;
+  --r:#c8372d; --r2:#fdecea; --g:#1f8a5b; --g2:#e6f5ee;
+  --sh:0 1px 0 rgba(35,29,59,.04),0 6px 18px -10px rgba(35,29,59,.25);
+  --fd:"Baloo 2",ui-rounded,"Segoe UI Rounded",system-ui,sans-serif;
+  --fb:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#15121f; --c:#1f1a2e; --c2:#251f37; --t:#ece8f7; --m:#a59fbf; --b:#352d4c;
+  --p:#a98bff; --p2:#2c2446; --pre:#ffa35e; --pre2:#3a2a1e; --pri:#7eaaf0; --pri2:#1e2a40;
+  --r:#ff7b6e; --r2:#3d1f22; --g:#56d39a; --g2:#1a3329; --sh:0 6px 18px -10px rgba(0,0,0,.6);
+}}
+
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 var(--fb);background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--fd);font-weight:700;letter-spacing:-.01em}
+main{padding:20px 18px 40px;max-width:1280px;margin:auto}
+:focus-visible{outline:3px solid var(--y);outline-offset:2px}
+
+/* ---- Banner ---- */
+.ban{position:relative;overflow:hidden;display:flex;align-items:center;gap:18px;padding:20px 24px 26px;color:#fff;background:var(--p)}
+.ban::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,var(--pre) 0 16%,var(--pri) 0 33%,var(--y) 0 50%,var(--gn) 0 66%,var(--r) 0 83%,#8b5fd6 0)}
+.ban img{height:92px;width:92px;object-fit:contain;background:#fff;border-radius:22px;padding:6px;transform:rotate(-4deg);box-shadow:0 0 0 4px var(--y)}
+.ban h1{font-size:clamp(20px,3.4vw,32px);margin:0;line-height:1.05}
+.ban p{margin:6px 0 0;opacity:.85;font-size:14px}
+.bk{position:absolute;right:22px;bottom:6px;display:flex;align-items:flex-end;gap:4px}
+.bk i{width:24px;border-radius:5px 5px 0 0;box-shadow:inset 0 -3px 0 rgba(0,0,0,.15),inset 0 3px 0 rgba(255,255,255,.25)}
+@media(max-width:700px){.bk{display:none}.ban img{height:64px;width:64px;border-radius:16px}}
+
+/* ---- Barra superior ---- */
+header{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;padding:10px 18px;background:color-mix(in srgb,var(--c) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:5}
+nav{display:flex;gap:4px;flex-wrap:wrap;background:var(--bg);padding:4px;border-radius:12px}
+nav a{padding:7px 14px;border-radius:9px;text-decoration:none;color:var(--m);font-weight:700;font-size:14px}
+nav a:hover{color:var(--t)}
+nav a.on{background:var(--c);color:var(--p);box-shadow:var(--sh)}
+.hr{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cx{display:inline-flex;background:var(--bg);padding:3px;border-radius:10px}
+.cx button{border:0;background:transparent;padding:5px 12px;border-radius:8px;font-weight:700}
+.cx button.on{background:var(--p);color:#fff}
+#rt{font-size:13px}
+
+/* ---- Controles ---- */
+button,input,select{font:inherit;color:var(--t);background:var(--c);border:1.5px solid var(--b);border-radius:10px;padding:8px 12px}
+input,select{background:var(--c2)}
+input:focus,select:focus{border-color:var(--p);outline:none;box-shadow:0 0 0 3px var(--p2)}
+button{cursor:pointer;font-weight:700;transition:background .15s,border-color .15s,transform .1s}
+button:hover{border-color:var(--p)}
+button:active{transform:translateY(1px)}
+button.on,button.pr{background:var(--p);color:#fff;border-color:var(--p)}
+button.pr:hover{filter:brightness(1.08)}
+#rf{width:38px;height:38px;padding:0;border-radius:50%;font-size:17px}
+
+/* ---- Tarjetas ---- */
+.card{background:var(--c);border:1px solid var(--b);border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:var(--sh)}
+.card h3{margin:0 0 12px;font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-bottom:16px}
+.grid .card{margin-bottom:0}
+.f{display:grid;gap:10px;align-content:start}
+.f label,.fl label{display:grid;gap:4px;color:var(--m);font-size:13px;font-weight:700}
+.panel{display:none}.panel.on{display:block}
+
+/* ---- Indicadores: cada uno lleva un bloque de color ---- */
+.k{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
+.k div{position:relative;background:var(--c);border:1px solid var(--b);border-radius:14px;padding:14px 16px 14px 22px;box-shadow:var(--sh);overflow:hidden}
+.k div::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:var(--p)}
+.k div:nth-child(1)::before{background:var(--r)}
+.k div:nth-child(2)::before{background:var(--g)}
+.k div:nth-child(3)::before{background:var(--pre)}
+.k div:nth-child(4)::before{background:var(--pri)}
+.k span{color:var(--m);font-size:13px;font-weight:700}
+.k b{display:block;font-family:var(--fd);font-size:28px;line-height:1.15;font-variant-numeric:tabular-nums}
+
+/* ---- Grados: listas desplegables por nivel ---- */
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px;align-items:flex-start}
+.chips>button{border-radius:14px;padding:10px 16px}
+.chip-group{--lv:var(--p);--lv2:var(--p2);flex:1 1 320px;background:var(--c);border:1px solid var(--b);border-radius:14px;overflow:hidden;box-shadow:var(--sh)}
+.chip-group.lv-pre{--lv:var(--pre);--lv2:var(--pre2)}
+.chip-group.lv-pri{--lv:var(--pri);--lv2:var(--pri2)}
+.chip-group summary{cursor:pointer;padding:10px 14px;list-style:none;display:flex;align-items:center;gap:10px;user-select:none;border-left:8px solid var(--lv)}
+.chip-group summary::-webkit-details-marker{display:none}
+.chip-group summary::after{content:"";margin-left:auto;width:9px;height:9px;border-right:2.5px solid var(--m);border-bottom:2.5px solid var(--m);transform:rotate(45deg);transition:transform .2s}
+.chip-group[open] summary::after{transform:rotate(-135deg)}
+.chip-group summary:hover{background:var(--lv2)}
+.cg-t{font-family:var(--fd);font-weight:700;font-size:17px}
+.cg-n{color:var(--m);font-size:13px;font-weight:700}
+.chip-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding:12px 14px 14px;background:var(--lv2);border-left:8px solid var(--lv)}
+.chip-items button{text-align:left;display:grid;gap:1px;border-color:transparent;border-radius:10px;padding:8px 12px}
+.chip-items button small{color:var(--m);font-weight:400;font-size:12px}
+.chip-items button em{font-style:normal;font-family:var(--fd);font-size:16px;color:var(--lv);font-variant-numeric:tabular-nums}
+.chip-items button.on em{color:#fff}
+.chip-items button:hover{border-color:var(--lv)}
+.chip-items button.on{background:var(--lv);border-color:var(--lv);color:#fff}
+.chip-items button.on small{color:#fff;opacity:.9}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---- Tablas ---- */
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--b);white-space:nowrap}
+th{color:var(--m);font-size:13px;font-weight:700;background:var(--c2);position:sticky;top:0}
+tbody tr:hover td{background:var(--c2)}
+tbody tr:last-child td{border-bottom:0}
+.bad{color:var(--r);font-weight:700}.ok{color:var(--g);font-weight:700}.m{color:var(--m)}
+td .bad,td .ok{display:inline-block;padding:2px 9px;border-radius:999px;font-size:13px}
+td .bad{background:var(--r2)} td .ok{background:var(--g2)}
+#pl button{color:var(--r);border-color:var(--r2);background:transparent;padding:5px 12px;font-size:13px}
+#pl button:hover{background:var(--r2);border-color:var(--r)}
+
+/* ---- Los más morosos ---- */
+.gr{margin-bottom:14px}
+.gr>b{display:inline-block;font-family:var(--fd);font-size:15px;margin-bottom:4px}
+.row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed var(--b);font-size:14px}
+.row:last-child{border-bottom:0}
+
+/* ---- Calendario ---- */
+.np{display:inline-flex;gap:4px}.np button{padding:2px 10px;border-radius:8px}
+#cmt{font-family:var(--fb);font-size:13px;color:var(--m);font-weight:400}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.cal>div,.cal>i{min-height:52px}
+.cal .d{border:1px solid var(--b);border-radius:10px;padding:4px 6px;cursor:pointer;font-size:13px;font-weight:700;background:var(--c2);transition:border-color .15s}
+.cal .d:hover{border-color:var(--p)}
+.cal .has{background:var(--g2);border-color:color-mix(in srgb,var(--g) 40%,transparent)}
+.cal .due{box-shadow:inset 0 0 0 2px var(--r)}
+.cal small{display:block;color:var(--g);font-size:10.5px;font-weight:700}
+.cal .w{min-height:0;text-align:center;color:var(--m);font-size:12px;font-weight:700}
+#cd{margin-top:12px}
+
+/* ---- Modal de confirmación ---- */
+.modal-ov{position:fixed;inset:0;z-index:100;background:rgba(25,18,45,.55);backdrop-filter:blur(3px);display:grid;place-items:center;padding:16px;animation:fd .15s ease-out}
+.modal-box{background:var(--c);border-radius:18px;padding:24px;width:min(410px,94vw);display:grid;gap:12px;border-top:8px solid var(--r);box-shadow:0 24px 60px -20px rgba(0,0,0,.5);animation:pop .18s ease-out}
+.modal-box h3{margin:0;font-size:21px}
+.modal-box p{margin:0;padding:10px 12px;background:var(--c2);border-radius:10px;font-size:14px}
+.modal-box label{display:grid;gap:4px;color:var(--m);font-size:13px;font-weight:700}
+#dpok{background:var(--r);border-color:var(--r);color:#fff}
+@keyframes fd{from{opacity:0}}@keyframes pop{from{opacity:0;transform:scale(.96)}}
+
+/* ---- Puerta de contraseña ---- */
+#gate .card{border-top:8px solid var(--p);padding:24px}
+
+/* ---- Impresión ---- */
+.pt{display:none}
+@media print{header,.np,.fl,.ban,#pl button{display:none!important}.pt{display:block}body{background:#fff;color:#000}.card{break-inside:avoid;box-shadow:none}.chip-group{box-shadow:none}}
