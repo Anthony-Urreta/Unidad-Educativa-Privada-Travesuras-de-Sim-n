@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="es"><head><title>Administrativo · Travesuras de Simón</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script></head><body class="pg-admin">
+<div id="gate"><div class="card f gate-box"><img src="logo.png" alt=""><h3>Panel administrativo</h3><label>Contraseña<input id="pw" type="password" autocomplete="current-password"></label><button class="pr" id="pgo">Entrar</button><span class="bad" id="pe"></span></div></div>
+<script>(()=>{const q=i=>document.getElementById(i),H='37e0f1cbe10546702a69eefe28b31f8598b84bc0e220b69621e715594034db5e',g=q('gate');if(sessionStorage.adm){g.remove();return}
+const ok=async()=>{try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(q('pw').value)),h=[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');if(h==H){sessionStorage.adm=1;g.remove()}else q('pe').textContent='Contraseña incorrecta'}catch{q('pe').textContent='Abre la página por https o localhost.'}};
+q('pgo').onclick=ok;q('pw').onkeydown=e=>{if(e.key=='Enter')ok()}})();</script>
+<div class="ban"><img src="logo.png" alt="Logo de Travesuras de Simón"><div class="bt"><h1>Travesuras de Simón</h1><p>Unidad Educativa Privada. Registro y control de matrícula 2026-2027</p></div><div class="spines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+<header><nav><a href="index.html">Panel general</a><a href="admin.html" class=on aria-current=page>Administrativo</a><a href="calculadora.html">Calculadora</a></nav><div class="hr"><span class="cx" role="group" aria-label="Moneda"><button class="on" data-c="USD">$</button><button data-c="VES">Bs</button></span><span class="rate" id="rt"></span><button id="rf" title="Actualizar desde GitHub" aria-label="Actualizar desde GitHub">⟳</button></div></header>
+<main>
+<section class="hero"><div><h2>Administración</h2><p class="m">Matrícula, tasa del día, mensualidad y abonos. Al terminar, pulsa «Guardar en GitHub».</p></div></section>
+<div class="grid">
+<div class="card f ac-pre"><h3>Cargar matrícula</h3><label class="drop"><input type="file" id="xl" accept=".xlsx,.xlsm,.xls"><b>Elegir archivo de Excel</b><span class="m">Sirve el archivo interno (.xlsm) o el unificado (.xlsx). Las columnas se reconocen por su título.</span></label><div id="xs"></div></div>
+<div class="card f ac-pri"><h3>Tasa BCV del día</h3><label>Bs por $ (4 decimales)<input id="fr" type="number" step="0.0001"></label><div class="btns"><button id="bcv">Traer tasa del BCV</button><button class="pr" id="rb">Registrar tasa del día</button></div><span class="m" id="bs">Se comparte con el panel general y la calculadora.</span></div>
+<div class="card f ac-med"><h3>Mensualidad</h3>
+<div class="two"><label>En dólares ($)<input id="fu" type="number" step="0.01"></label><label>En bolívares (Bs)<input id="fb" type="number" step="0.01"></label>
+<label>Primer mes de cobro<input id="fs" type="month"></label><label>Día de vencimiento<input id="fd" type="number" min="1" max="28"></label></div>
+<button class="pr" id="cs1">Guardar mensualidad</button></div>
+<div class="card f ac-y"><h3>Registrar abono</h3>
+<label>Estudiante<input id="as" list="dl" placeholder="Nombre — cédula"></label>
+<div class="two"><label>Fecha<input id="ad" type="date"></label><label>Monto<input id="am" type="number" step="0.01"></label></div>
+<label>Moneda<select id="ak"><option value="USD">Dólares ($)</option><option value="VES">Bolívares (Bs)</option></select></label>
+<button class="pr" id="ab">Registrar abono</button></div>
+<div class="card f ac-ink"><h3>Conexión GitHub</h3>
+<div class="two"><label>Usuario u organización<input id="go"></label><label>Repositorio<input id="gr"></label><label>Rama<input id="gb" placeholder="main"></label><label>Archivo<input id="gp" placeholder="data.json"></label></div><label>Token (queda solo en este dispositivo)<input id="gt" type="password"></label>
+<div class="btns"><button class="pr" id="gsv">Guardar en GitHub</button><button id="gld">Cargar de GitHub</button><button id="dj">Descargar JSON</button></div><span class="m" id="gs"></span></div>
+</div>
+<div class="grid g2"><div class="card tw"><h3>Últimos abonos</h3><table><tbody id="pl"></tbody></table></div><div class="card tw"><h3>Registro diario de tasas</h3><table id="rl"></table></div></div></main>
+<datalist id="dl"></datalist><script src="app.js"></script></body></html>
